@@ -20,11 +20,11 @@ If you wish to give it a shot before looking into the detailed step-by-step and 
 
 ## Step-by-Step Guide
 
-1. In the `terraform` block, specify the required Terraform version (`~> 1.7`). Additionally, define the required providers and their versions. In this case, we need the `aws` provider (`~> 5.0`) and the `random` provider (`~> 3.0`).
+1. In the `terraform` block, specify the required Terraform version (`~> 1.5.7`). Additionally, define the required providers and their versions. In this case, we need the `aws` provider (`~> 5.0`) and the `random` provider (`~> 3.0`).
 
     ```
     terraform {
-      required_version = "~> 1.7"
+      required_version = "~> 1.5.7"
       required_providers {
         aws = {
           source  = "hashicorp/aws"

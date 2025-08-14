@@ -19,7 +19,7 @@ If you wish to give it a shot before looking into the detailed step-by-step and 
 
 ## Step-by-Step Guide
 
-1. First, make sure you have Terraform version 1.7 or later installed. You can check this by running `terraform version` in your terminal.
+1. First, make sure you have Terraform version 1.5.7 or later installed. You can check this by running `terraform version` in your terminal.
 2. Copy the files from the folder `03-first-tf-project` to a new folder named `04-backends`.
 3. You will also need to have the AWS and Random providers installed. These can be installed by running the command `terraform init` inside the `04-backends` folder.
 4. Next, you will need to set up your S3 bucket. Choose a unique name for it, and make sure the bucket is created in the region of your choice. You can set this up through the AWS console or using the AWS CLI.

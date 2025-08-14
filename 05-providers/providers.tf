@@ -1,5 +1,5 @@
 terraform {
-  required_version = "~> 1.7"
+  required_version = "~> 1.5.7"
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -18,10 +18,10 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "eu_west_1" {
-  bucket = "some-random-bucket-name-aosdhfoadhfu"
+  bucket = "some-random-bucket-name-asdfasevavgre"
 }
 
 resource "aws_s3_bucket" "us_east_1" {
-  bucket   = "some-random-bucket-name-18736481364"
+  bucket   = "some-random-bucket-name-1635430846870"
   provider = aws.us-east
 }
