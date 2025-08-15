@@ -1,3 +1,9 @@
+variable "aws_region" {
+  description = "The AWS region to deploy resources in"
+  type        = string
+  default     = "us-east-1"
+}
+
 variable "ec2_instance_type" {
   type        = string
   description = "The type of the managed EC2 instances."
@@ -24,9 +30,5 @@ variable "ec2_volume_config" {
 variable "additional_tags" {
   type    = map(string)
   default = {}
-}
 
-variable "my_sensitive_value" {
-  type      = string
-  sensitive = true
 }
