@@ -6,6 +6,11 @@ terraform {
       version = "~> 5.0"
     }
   }
+  backend "s3" {
+    bucket = "terraform-course-willdutcher-remote-backend"
+    key    = "06-backends/state.tfstate"
+    region = "us-east-1"
+  }
 }
 
 provider "aws" {

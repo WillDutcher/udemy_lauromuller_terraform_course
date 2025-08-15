@@ -16,7 +16,6 @@ resource "aws_s3_bucket_public_access_block" "static_website" {
 
 resource "aws_s3_bucket_policy" "static_website_public_read" {
   bucket = aws_s3_bucket.static_website.id
-
   policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
@@ -29,6 +28,7 @@ resource "aws_s3_bucket_policy" "static_website_public_read" {
       }
     ]
   })
+  depends_on = [aws_s3_bucket_public_access_block.static_website]
 }
 
 resource "aws_s3_bucket_website_configuration" "static_website" {

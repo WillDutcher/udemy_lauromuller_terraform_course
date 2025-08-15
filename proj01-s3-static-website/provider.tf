@@ -10,8 +10,13 @@ terraform {
       version = "~> 3.0"
     }
   }
+  backend "s3" {
+    bucket = "terraform-course-willdutcher-remote-backend"
+    key    = "proj01-s3-static-website/state.tfstate"
+    region = "us-east-1"
+  }
 }
 
 provider "aws" {
-  region = "eu-west-1"
+  region = "us-east-1"
 }
