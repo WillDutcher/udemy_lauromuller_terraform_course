@@ -32,3 +32,8 @@ variable "additional_tags" {
   default = {}
 
 }
+
+variable "my_sensitive_value" {
+  type      = string
+  sensitive = true
+}
