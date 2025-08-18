@@ -15,31 +15,31 @@ objects_list = [
   },
   {
     firstname = "Jane"
-    lastname  = "Smyth"
+    lastname  = "Smith"
   },
   {
-    firstname = "Joan"
-    lastname  = "Schmidt"
+    firstname = "Lauro"
+    lastname  = "Müller"
   }
 ]
 
 users = [
   {
     role     = "admin"
-    username = "John"
+    username = "john"
   },
   {
     role     = "developer"
-    username = "Jane"
-  },
-  {
-    role     = "admin"
-    username = "Jane"
+    username = "jane"
   },
   {
     role     = "auditor"
-    username = "Joan"
+    username = "jane"
+  },
+  {
+    role     = "auditor"
+    username = "lauro"
   }
 ]
 
-user_to_output = "Jane"
+user_to_output = "jane"

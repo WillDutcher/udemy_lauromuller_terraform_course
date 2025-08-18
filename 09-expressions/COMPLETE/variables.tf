@@ -8,7 +8,7 @@ variable "numbers_map" {
 
 variable "objects_list" {
   type = list(object({
-    firstname = string,
+    firstname = string
     lastname  = string
   }))
 }
