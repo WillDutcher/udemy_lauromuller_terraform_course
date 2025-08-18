@@ -8,7 +8,7 @@ terraform {
   }
   backend "s3" {
     bucket = "terraform-course-willdutcher-remote-backend"
-    key    = "06-backends/state.tfstate"
+    key    = "07-data-sources/state.tfstate"
     region = "us-east-1"
   }
 }
