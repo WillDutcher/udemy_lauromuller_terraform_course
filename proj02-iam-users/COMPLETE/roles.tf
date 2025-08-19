@@ -14,10 +14,6 @@ locals {
       "AmazonEC2FullAccess",
       "AmazonRDSFullAccess"
     ]
-    contributor = [
-      "AmazonAthenaFullAccess",
-      "AmazonMacieFullAccess"
-    ]
   }
 
   role_policies_list = flatten([
@@ -32,10 +28,6 @@ locals {
 
 data "aws_caller_identity" "current" {}
 
-/*
-1. Iterate over existing roles and create different assume_role_policy for each of them.
-2. In each role policy, under identifiers, add only the users that have that specific role listed in their their "roles" list.
-*/
 data "aws_iam_policy_document" "assume_role_policy" {
   for_each = toset(keys(local.role_policies))
 
@@ -52,19 +44,24 @@ data "aws_iam_policy_document" "assume_role_policy" {
   }
 }
 
+resource "aws_iam_role" "roles" {
+  for_each = toset(keys(local.role_policies))
+
+  name               = each.key
+  assume_role_policy = data.aws_iam_policy_document.assume_role_policy[each.value].json
+}
+
 data "aws_iam_policy" "managed_policies" {
   for_each = toset(local.role_policies_list[*].policy)
   arn      = "arn:aws:iam::aws:policy/${each.value}"
 }
 
-resource "aws_iam_role" "roles" {
-  for_each           = toset(keys(local.role_policies))
-  name               = each.key
-  assume_role_policy = data.aws_iam_policy_document.assume_role_policy[each.value].json
-}
-
 resource "aws_iam_role_policy_attachment" "role_policy_attachments" {
-  count      = length(local.role_policies_list)
-  role       = aws_iam_role.roles[local.role_policies_list[count.index].role].name
-  policy_arn = data.aws_iam_policy.managed_policies[local.role_policies_list[count.index].policy].arn
+  count = length(local.role_policies_list)
+  role = aws_iam_role.roles[
+    local.role_policies_list[count.index].role
+  ].name
+  policy_arn = data.aws_iam_policy.managed_policies[
+    local.role_policies_list[count.index].policy
+  ].arn
 }

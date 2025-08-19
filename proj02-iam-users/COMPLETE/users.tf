@@ -6,14 +6,13 @@ locals {
 }
 
 resource "aws_iam_user" "users" {
-  # for_each = [for user_config in local.local.users_from_yaml : user_config.username]
   for_each = toset(local.users_from_yaml[*].username)
   name     = each.value
 }
 
 resource "aws_iam_user_login_profile" "users" {
   for_each        = aws_iam_user.users
-  user            = each.value.name # or each.key
+  user            = each.value.name
   password_length = 8
 
   lifecycle {
@@ -25,12 +24,9 @@ resource "aws_iam_user_login_profile" "users" {
   }
 }
 
-# NEVER DO THIS IN A PRODUCTION ENVIRONMENT!
 output "passwords" {
   sensitive = true
-  value     = { for user, user_login in aws_iam_user_login_profile.users : user => user_login.password }
+  value = {
+    for user, user_login in aws_iam_user_login_profile.users : user => user_login.password
+  }
 }
-
-# output "users" {
-#   value = local.users_from_yaml
-# }
