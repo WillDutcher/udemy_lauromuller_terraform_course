@@ -4,7 +4,7 @@ locals {
 
 data "aws_ami" "ubuntu" {
   most_recent = true
-  owners      = ["099720109477"] # Canonical
+  owners      = ["099720109477"] # Owner is Canonical
 
   filter {
     name   = "name"
@@ -17,7 +17,7 @@ data "aws_ami" "ubuntu" {
   }
 }
 
-module "ec2-instance" {
+module "ec2" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "5.6.1"
 

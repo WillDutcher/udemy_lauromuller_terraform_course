@@ -17,4 +17,6 @@ module "vpc" {
   azs             = data.aws_availability_zones.azs.names
   private_subnets = local.private_subnet_cidrs
   public_subnets  = local.public_subnet_cidrs
+
+  tags = local.common_tags
 }
