@@ -1,12 +1,16 @@
 /*
 1. Remove via CLI
-2. Remove via the removed block
+2. Remove via removed block
 */
 
-removed {
-  from = aws_s3_bucket.my_new_bucket
+# resource "aws_s3_bucket" "my_bucket" {
+#     bucket = "random-name-345kj4nt34k5j"
+# }
 
-  lifecycle {
-    destroy = false
-  }
-}
+# removed {
+#     from = aws_s3_bucket.my_new_bucket
+
+#     lifecycle {
+#         destroy = true
+#     }
+# }

@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "tainted" {
-    bucket = "my-tainted-bucket-435k45kmn43"
+  bucket = "my-tainted-bucket-19384981jhahds"
 }
 
 resource "aws_s3_bucket_public_access_block" "from_tainted" {
@@ -12,10 +12,10 @@ resource "aws_s3_bucket_public_access_block" "from_tainted" {
 }
 
 resource "aws_vpc" "this" {
-    cidr_block = "10.0.0.0/16"
+  cidr_block = "10.0.0.0/16"
 }
 
 resource "aws_subnet" "this" {
-    vpc_id = aws_vpc.this.id
-    cidr_block = "10.0.0.0/24"
+  vpc_id     = aws_vpc.this.id
+  cidr_block = "10.0.0.0/24"
 }

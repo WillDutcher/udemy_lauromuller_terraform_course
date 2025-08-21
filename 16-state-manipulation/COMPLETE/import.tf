@@ -1,24 +1,19 @@
 /*
 1. Import via CLI
-2. Import via import block
+2. Import via the import block
 */
 
 resource "aws_s3_bucket" "remote_state" {
-  bucket = "terraform-course-willdutcher-remote-backend"
+  bucket = "terraform-course-lauromueller-remote-backend"
 
   tags = {
     ManagedBy = "Terraform"
-    Lifecycle = "Critical"
   }
-
-#   lifecycle {
-#     prevent_destroy = true
-#   }
 }
 
 import {
   to = aws_s3_bucket_public_access_block.remote_state
-  id = "terraform-course-willdutcher-remote-backend"
+  id = aws_s3_bucket.remote_state.bucket
 }
 
 resource "aws_s3_bucket_public_access_block" "remote_state" {
