@@ -2,6 +2,10 @@ locals {
   public_subnets = {
     for key, config in var.subnet_config : key => config if config.public
   }
+
+  private_subnets = {
+    for key, config in var.subnet_config : key => config if !config.public
+  }
 }
 
 data "aws_availability_zones" "available" {
@@ -24,6 +28,7 @@ resource "aws_subnet" "this" {
 
   tags = {
     Name = each.key
+    Access = each.value.public ? "Public" : "Private"
   }
 
   lifecycle {
