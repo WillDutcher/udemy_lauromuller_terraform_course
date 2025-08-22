@@ -1,6 +1,7 @@
-##########################
-#    SUBNET VALIDATION   #
-##########################
+##############################
+# Subnet Validation
+##############################
+
 data "aws_vpc" "default" {
   default = true
 }
@@ -13,32 +14,34 @@ data "aws_subnet" "input" {
     postcondition {
       condition     = self.vpc_id != data.aws_vpc.default.id
       error_message = <<-EOT
-      The following subnet is part of the default VPC:
+        The following subnet is part of the default VPC:
 
-      Name = ${self.tags.Name}
-      ID = ${self.id}
+        Name = ${self.tags.Name}
+        ID   = ${self.id}
 
-      Please do not deploy RDS instances in the default VPC.
-      EOT
+        Please do not deploy RDS instances in the default VPC.
+        EOT
     }
+
     postcondition {
       condition     = can(lower(self.tags.Access) == "private")
       error_message = <<-EOT
-      The following subnet is not marked as private:
+        The following subnet is not marked as private:
 
-      Name = ${self.tags.Name}
-      ID = ${self.id}
+        Name = ${self.tags.Name}
+        ID   = ${self.id}
 
-      Please ensure that the subnet is properly tagged by adding the following tags:
-      1. Access = "private"
-      EOT
+        Please ensure that the subnet is properly tagged by adding the following tags:
+        1. Access = "private"
+        EOT
     }
   }
 }
 
-#############################
-# SECURITY GROUP VALIDATION #
-#############################
+##############################
+# Security Group Validation
+##############################
+
 data "aws_vpc_security_group_rules" "input" {
   filter {
     name   = "group-id"

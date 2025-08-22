@@ -11,6 +11,6 @@ module "database" {
   ]
   credentials = {
     username = "dbadmin"
-    password = "Passw0rd123"
+    password = "abc1+?_ahu"
   }
 }

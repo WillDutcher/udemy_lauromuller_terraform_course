@@ -22,7 +22,7 @@ moved {
 resource "aws_subnet" "private1" {
   vpc_id            = aws_vpc.custom.id
   cidr_block        = "10.0.0.0/24"
-  availability_zone = "us-east-1a"
+  availability_zone = "eu-west-1a"
 
   tags = {
     Name   = "subnet-custom-vpc-private1"
@@ -33,7 +33,7 @@ resource "aws_subnet" "private1" {
 resource "aws_subnet" "private2" {
   vpc_id            = aws_vpc.custom.id
   cidr_block        = "10.0.1.0/24"
-  availability_zone = "us-east-1b"
+  availability_zone = "eu-west-1b"
 
   tags = {
     Name   = "subnet-custom-vpc-private2"

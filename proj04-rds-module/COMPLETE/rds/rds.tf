@@ -2,7 +2,7 @@ locals {
   db_engine = {
     postgres-latest = {
       engine  = "postgres"
-      version = "16.3"
+      version = "16.1"
       family  = "postgres16"
     }
     postgres-14 = {
