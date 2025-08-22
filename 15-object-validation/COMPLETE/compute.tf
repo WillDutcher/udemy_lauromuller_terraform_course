@@ -29,22 +29,15 @@ resource "aws_instance" "this" {
   }
 
   tags = {
-    CostCenter = "IT"
+    CostCenter = "1234"
   }
-
-  # lifecycle {
-  #   precondition {
-  #     condition     = contains(local.allowed_instance_types, var.instance_type)
-  #     error_message = "Invalid instance type."
-  #   }
-  # }
 
   lifecycle {
     create_before_destroy = true
 
     postcondition {
       condition     = contains(local.allowed_instance_types, self.instance_type)
-      error_message = "Invalid instance type."
+      error_message = "Self invalid instance type"
     }
   }
 }

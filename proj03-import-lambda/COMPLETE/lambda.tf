@@ -14,10 +14,10 @@ resource "aws_lambda_function" "this" {
   filename         = "lambda.zip"
   function_name    = "manually-created-lambda"
   handler          = "index.handler"
-  role             = "arn:aws:iam::835709223899:role/service-role/manually-created-lambda-role-j8sflufg"
-  runtime          = "nodejs22.x"
+  role             = aws_iam_role.lambda_execution_role.arn
+  runtime          = "nodejs18.x"
   source_code_hash = data.archive_file.lambda_code.output_base64sha256
-  
+
   tags = {
     "lambda-console:blueprint" = "hello-world"
   }
